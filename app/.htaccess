@@ -1,0 +1,9 @@
+# جلوگیری از دسترسی به پوشه‌های حساس برنامه
+# (Apache 2.4+) — نسخه‌های قدیمی‌تر از دستور Deny از all استفاده می‌کنند
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

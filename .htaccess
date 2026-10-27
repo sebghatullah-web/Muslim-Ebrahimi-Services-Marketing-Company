@@ -1,0 +1,37 @@
+# ------------------------------------------------------------------
+# مسیریابی URL برای وب‌سایت مسلم ابراهیمی
+# تمام درخواست‌ها به index.php ارسال می‌شوند مگر فایل‌های استاتیک موجود باشند.
+# ------------------------------------------------------------------
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # اگر APP_URL زیرپوشه‌ای است، مسیر پایه را اینجا تنظیم کنید (مثال):
+    # RewriteBase /MuslimEbrahimiServicesMarketingCompany/
+
+    # عدم اجرای مجدد rewrite برای فایل‌ها و پوشه‌های موجود
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # ارسال بقیه درخواست‌ها به فرانت‌کنترلولر
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# ------------------------------------------------------------------
+# هدرهای امنیتی پایه
+# ------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ------------------------------------------------------------------
+# جلوگیری از دسترسی مستقیم به فایل‌های حساس
+# ------------------------------------------------------------------
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>

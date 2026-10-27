@@ -1,0 +1,22 @@
+# پوشه‌های وابسته
+/vendor
+
+# متغیرهای محیطی - هرگز کامیت نشود
+.env
+
+# پوشه‌های ذخیره‌سازی و بارگذاری کاربر
+/storage/uploads/*
+!/storage/uploads/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# فایل‌های موقت سیستم
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# تنظیمات ویرایشگر
+.vscode/*
+!.vscode/extensions.json
+.idea/
